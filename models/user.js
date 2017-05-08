@@ -23,11 +23,11 @@ const User = db.define('user', {
   },
   instanceMethods: {
     haveBirthday: function () {
-      // return this.update({
-        // age: this.age + 1
-      // });
-      this.age++;
-      return this.save();
+      return this.update({
+        age: this.age + 1
+      });
+      // this.age++;
+      // return this.save();
     }
   }
 });
