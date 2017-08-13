@@ -31,6 +31,7 @@ describe('User model', function () {
       .then(function (savedUser) {
         expect(savedUser.first).to.equal('DB');
         expect(savedUser.last).to.equal('Admin');
+        expect(savedUser.age).to.equal(42);
         expect(savedUser.email).to.equal('dbAdmin@company.com');
         expect(savedUser.bio).to.equal(bio);
       })
@@ -40,7 +41,9 @@ describe('User model', function () {
       user.email = null;
 
       return user.validate()
-      .then(function (err) {
+      .then(function () {
+        throw new Error('validation should fail without email');
+      }, function (err) {
         expect(err).to.be.an.instanceOf(Error);
         expect(err.message).to.contain('email cannot be null');
       });
@@ -50,9 +53,9 @@ describe('User model', function () {
       user.age = 17;
 
       return user.validate()
-      .then(function (err) {
+      .catch(function (err) {
         expect(err).to.be.an.instanceOf(Error);
-        expect(err.message).to.contain('Validation min failed');
+        expect(err.message).to.contain('Validation min on age failed');
       });
     });
 
@@ -111,3 +114,4 @@ describe('User model', function () {
   });
 
 });
+
