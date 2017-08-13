@@ -20,16 +20,15 @@ const User = db.define('user', {
     fullName: function () {
       return `${this.first} ${this.last}`;
     }
-  },
-  instanceMethods: {
-    haveBirthday: function () {
-      return this.update({
-        age: this.age + 1
-      });
-      // this.age++;
-      // return this.save();
-    }
   }
 });
+
+User.prototype.haveBirthday = function () {
+  return this.update({
+    age: this.age + 1
+  });
+  // this.age++;
+  // return this.save();
+}
 
 module.exports = User;
