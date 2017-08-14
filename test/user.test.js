@@ -53,7 +53,10 @@ describe('User model', function () {
       user.age = 17;
 
       return user.validate()
-      .catch(function (err) {
+      .then(function (err) {
+        expect(err).to.be.an.instanceOf(Error);
+        expect(err.message).to.contain('Validation min on age failed');
+      }, function (err) {
         expect(err).to.be.an.instanceOf(Error);
         expect(err.message).to.contain('Validation min on age failed');
       });
