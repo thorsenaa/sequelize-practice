@@ -24,11 +24,10 @@ const User = db.define('user', {
 });
 
 User.prototype.haveBirthday = function () {
-  return this.update({
-    age: this.age + 1
-  });
-  // this.age++;
-  // return this.save();
+  return this.increment('age');
+  // return this.update({
+    // age: this.age + 1
+  // });
 }
 
 module.exports = User;
