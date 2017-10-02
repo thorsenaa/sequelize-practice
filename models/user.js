@@ -38,17 +38,25 @@ User.prototype.haveBirthday = function() {
     //         age: '43'
     //     });
     // });
-    const newData = {
-        age: 43
-    };
+    // const newData = {
+    //     age: 43
+    // };
 
-    User.update(newData, { where: { age: 42 }, 
-        returning: true,
-        plain: true
-    })
-    .then((updatedAge) => {
-        console.log(updatedAge)
-    }).save(updatedAge)
+    // User.update(newData, { where: { age: 42 }, 
+    //     returning: true,
+    //     plain: true
+    // })
+    // .then((updatedAge) => {
+    //     // console.log(updatedAge)
+    // }).save(updatedAge)
+
+
+      //*** here you can do something like this 
+    return this.update({
+    age: this.age + 1
+  });
+
+// you don't need a .then because you aren't sending anything here you are just adding an instance method to the model. 
 }
 
 module.exports = User;
