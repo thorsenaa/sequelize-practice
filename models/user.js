@@ -24,31 +24,8 @@ const User = db.define('user', {
 });
 
 User.prototype.haveBirthday = function() {
-    // User.update({
-    //     where: {age:42}
-    // }).then((oldAge) =>{
-    //     console.log(oldAge)
-    // })
-
-    // User.findOne({
-    //     age: '42'
-    // })
-    // .then(user => {
-    //     user.updateAttributes({
-    //         age: '43'
-    //     });
-    // });
-    const newData = {
-        age: 43
-    };
-
-    User.update(newData, { where: { age: 42 }, 
-        returning: true,
-        plain: true
-    })
-    .then((updatedAge) => {
-        console.log(updatedAge)
-    }).save(updatedAge)
+    this.age = this.age + 1
+    return this.save();
 }
 
 module.exports = User;
